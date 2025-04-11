@@ -1,0 +1,15 @@
+
+import random
+
+def jogar_dado_viciado():
+  jogada = input("Digite 'jogar' para lançar o dado ou 'sair' para sair: ")
+  while jogada.lower() != "sair":
+    if jogada.lower() == "jogar":
+
+      numero = random.choices([1, 2, 3, 4, 5, 6], weights=[1, 1, 1, 1, 1, 5])[0]
+      print("Resultado do dado:", numero)
+    else:
+      print("Comando inválido. Digite 'jogar' ou 'sair'.")
+    jogada = input("Digite 'jogar' para lançar o dado ou 'sair' para sair: ")
+
+jogar_dado_viciado()

@@ -1,0 +1,72 @@
+import random
+
+def jogo_da_forca():
+
+    palavras = ["teclado"]
+    palavra_secreta = random.choice(palavras).upper()
+    letras_acertadas = ["_"] * len(palavra_secreta)
+    letras_erradas = []
+    tentativas_maximas = 6
+    tentativas = 0
+
+    print("\nBem-vindo ao Jogo da Forca!")
+    print(f"A palavra tem {len(palavra_secreta)} letras.")
+    print(" ".join(letras_acertadas) + "\n")
+
+    while True:
+        letra = input("Chute uma letra: ").upper()
+        if len(letra) != 1 or not letra.isalpha():
+            print("Por favor, digite apenas uma letra.")
+            continue
+
+        if letra in letras_acertadas or letra in letras_erradas:
+            print("Você já chutou essa letra.")
+            continue
+
+        if letra in palavra_secreta:
+            for i in range(len(palavra_secreta)):
+                if letra == palavra_secreta[i]:
+                    letras_acertadas[i] = letra
+
+    while True:
+        # Verifica condições de término do jogo
+        if "_" not in letras_acertadas:
+            print("\nParabéns! Você acertou a palavra!")
+            print(f"A palavra era: {palavra_secreta}")
+            break
+            
+        if tentativas >= tentativas_maximas:
+            print("\nGame over! Você perdeu!")
+            print(f"A palavra era: {palavra_secreta}")
+            break
+        
+        # Pede a letra ao jogador
+        letra = input("Digite uma letra: ").upper()
+        
+        # Valida a entrada
+        if len(letra) != 1 or not letra.isalpha():
+            print("Por favor, digite apenas uma letra válida.")
+            continue
+            
+        # Verifica se a letra já foi tentada
+        if letra in letras_acertadas or letra in letras_erradas:
+            print("Você já tentou esta letra. Tente outra.")
+            continue
+            
+        # Verifica se a letra está na palavra
+        if letra in palavra_secreta:
+            print("\nAcertou uma letra!")
+            # Revela todas as ocorrências da letra
+            for i in range(len(palavra_secreta)):
+                if palavra_secreta[i] == letra:
+                    letras_acertadas[i] = letra
+        else:
+            print("\nErrou! Esta letra não está na palavra.")
+            letras_erradas.append(letra)
+            tentativas += 1
+            
+        # Mostra o estado atual do jogo
+        print("\nPalavra: " + " ".join(letras_acertadas))
+        print(f"Letras erradas:{", ".join(letras_erradas)}")
+        print(f"Tentativas restantes: {tentativas_maximas - tentativas}")
+        

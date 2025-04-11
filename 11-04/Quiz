@@ -1,0 +1,51 @@
+import random
+
+def quiz():
+  perguntas = [
+      {
+          "pergunta": "Qual a capital do Brasil?",
+          "opcoes": ["a) São Paulo", "b) Rio de Janeiro", "c) Brasília"],
+          "resposta": "c"
+      },
+      {
+          "pergunta": "Qual o maior planeta do sistema solar?",
+          "opcoes": ["a) Marte", "b) Júpiter", "c) Vênus"],
+          "resposta": "b"
+      },
+      {
+          "pergunta": "Quem pintou a Mona Lisa?",
+          "opcoes": ["a) Michelangelo", "b) Leonardo da Vinci", "c) Rafael"],
+          "resposta": "b"
+      },
+      {
+          "pergunta": "Em que ano ocorreu a Independência do Brasil?",
+          "opcoes": ["a) 1808", "b) 1822", "c) 1889"],
+          "resposta": "b"
+      },
+      {
+          "pergunta": "Qual o elemento químico mais abundante na crosta terrestre?",
+          "opcoes": ["a) Ferro", "b) Oxigênio", "c) Silício"],
+          "resposta": "b"
+      }
+  ]
+
+  random.shuffle(perguntas)  # Embaralha as perguntas
+  num_perguntas = random.randint(3, 5)  # Define um número aleatório de perguntas
+  perguntas = perguntas[:num_perguntas]
+
+  acertos = 0
+  for pergunta in perguntas:
+    print(pergunta["pergunta"])
+    for opcao in pergunta["opcoes"]:
+      print(opcao)
+    resposta_usuario = input("Sua resposta (a, b ou c): ").lower()
+    if resposta_usuario == pergunta["resposta"]:
+      print("Correto!")
+      acertos += 1
+    else:
+      print("Incorreto. A resposta correta é", pergunta["resposta"])
+    print()
+  
+  print(f"Você acertou {acertos} de {num_perguntas} perguntas.")
+
+quiz()
