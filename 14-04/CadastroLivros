@@ -1,0 +1,14 @@
+biblioteca = []
+
+while True:
+  titulo = input("Digite o título do livro (ou 'sair' para finalizar): ")
+  if titulo.lower() == 'sair':
+    break
+  autor = input("Digite o autor do livro: ")
+  ano = int(input("Digite o ano de publicação: "))
+  livro = (titulo, autor, ano)
+  biblioteca.append(livro)
+
+print("\n📚 Livros cadastrados:")
+for i, livro in enumerate(biblioteca):
+  print(f"{i+1}. Título: {livro[0]} | Autor: {livro[1]} | Ano: {livro[2]}")
